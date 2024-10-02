@@ -58,6 +58,8 @@
         }
     </style>
     <script>
+        let noClickCount = 0; // Houdt bij hoeveel keer er op "Nee" is geklikt
+
         function showModal(message) {
             var modal = document.getElementById("myModal");
             var modalText = document.getElementById("modalText");
@@ -69,7 +71,22 @@
             if (answer === 'yes') {
                 showModal('YAY, bye baba');
             } else {
-                showModal('Oke, maakt niet uit hoor');
+                noClickCount++;
+                if (noClickCount < 5) {
+                    // Toon steeds andere berichten tot 5 keer "Nee" is geklikt
+                    let messages = [
+                        'Ben je zeker?',
+                        'Ben je heel zeker?',
+                        'Zou je niet de andere knop proberen?',
+                        'Echt waar?',
+                        'Laatste kans!'
+                    ];
+                    showModal(messages[noClickCount - 1]);
+                } else {
+                    // Na 5 keer "Nee" klikken, toon de originele boodschap
+                    showModal('Oke, maakt niet uit hoor');
+                    noClickCount = 0; // Reset de teller als de oorspronkelijke boodschap is getoond
+                }
             }
         }
 
