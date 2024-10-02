@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vraag</title>
+    <title>Crush</title> <!-- Titel is Crush -->
     <style>
         body {
             background-color: pink; /* Roze achtergrond */
@@ -45,30 +45,53 @@
         .modal-content {
             background-color: white;
             color: black;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
             text-align: center;
-            width: 300px;
+            width: 400px; /* Vergrote pop-up */
+            font-size: 1.5em;
         }
         .close {
             color: red;
             cursor: pointer;
             float: right;
-            font-size: 1.2em;
+            font-size: 1.5em;
         }
     </style>
     <script>
         let noClickCount = 0; // Houdt bij hoeveel keer er op "Nee" is geklikt
+
+        // Confetti effect functie
+        function confettiEffect() {
+            const confetti = document.createElement("div");
+            confetti.style.position = "fixed";
+            confetti.style.top = "0";
+            confetti.style.left = "50%";
+            confetti.style.transform = "translateX(-50%)";
+            confetti.innerHTML = "🎉🎉🎉";
+            confetti.style.fontSize = "5em";
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                document.body.removeChild(confetti);
+            }, 3000); // Confetti verdwijnt na 3 seconden
+        }
 
         function showModal(message) {
             var modal = document.getElementById("myModal");
             var modalText = document.getElementById("modalText");
             modalText.textContent = message;
             modal.style.display = "flex";
+
+            // Laat de modal na 5 seconden verdwijnen
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 5000);
         }
 
         function handleAnswer(answer) {
             if (answer === 'yes') {
+                confettiEffect(); // Voeg confetti-effect toe bij "Ja!"
                 showModal('YAY, bye baba');
             } else {
                 noClickCount++;
@@ -97,7 +120,7 @@
     </script>
 </head>
 <body>
-    <h1>Wil je mijn GF zijn?</h1>
+    <h1>Wil je mijn GirlFriend zijn?</h1> <!-- Verander GF naar GirlFriend -->
     <button onclick="handleAnswer('yes')">Ja!</button>
     <button onclick="handleAnswer('no')">Nee.</button>
 
