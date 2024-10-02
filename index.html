@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crush</title> <!-- Titel is Crush -->
+    <title>Crush</title>
+    <link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.1.0/svg/2764.svg" type="image/svg+xml">
     <style>
         body {
             background-color: pink; /* Roze achtergrond */
             color: white; /* Witte tekstkleur */
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
             text-align: center;
-            padding-top: 50px;
+            flex-direction: column;
         }
         h1 {
             font-size: 2.5em;
@@ -54,8 +60,10 @@
         .close {
             color: red;
             cursor: pointer;
-            float: right;
-            font-size: 1.5em;
+            font-size: 2em; /* Groter kruisje */
+            position: absolute;
+            top: 10px;
+            right: 20px;
         }
     </style>
     <script>
@@ -92,7 +100,7 @@
         function handleAnswer(answer) {
             if (answer === 'yes') {
                 confettiEffect(); // Voeg confetti-effect toe bij "Ja!"
-                showModal('YAY, bye baba');
+                document.body.innerHTML = "<h1>Hey baba, stuur mij je antwoord door</h1>";
             } else {
                 noClickCount++;
                 if (noClickCount < 5) {
@@ -106,9 +114,8 @@
                     ];
                     showModal(messages[noClickCount - 1]);
                 } else {
-                    // Na 5 keer "Nee" klikken, toon de originele boodschap
-                    showModal('Oke, maakt niet uit hoor');
-                    noClickCount = 0; // Reset de teller als de oorspronkelijke boodschap is getoond
+                    // Na 5 keer "Nee" klikken, sluit de site zichzelf
+                    window.close();
                 }
             }
         }
