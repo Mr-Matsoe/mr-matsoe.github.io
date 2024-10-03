@@ -129,8 +129,11 @@
         }
 
         function closePage() {
-            // Sluit de pagina
-            window.close();
+            // Gebruik window.location.href om de pagina af te sluiten
+            document.body.innerHTML = '<h1>De pagina wordt gesloten...</h1>';
+            setTimeout(function() {
+                window.close();
+            }, 2000); // Wacht 2 seconden voordat de pagina sluit
         }
 
         function closeModal() {
